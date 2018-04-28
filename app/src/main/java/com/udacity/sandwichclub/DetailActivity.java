@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,29 +64,58 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
 
-        TextView origin = findViewById(R.id.origin_tv);
-        origin.setText(sandwich.getPlaceOfOrigin());
+        TextView mainNameView = findViewById(R.id.main_name_tv);
+        mainNameView.setText(sandwich.getMainName());
 
-        TextView description = findViewById(R.id.description_tv);
-        description.setText(sandwich.getDescription());
+        TextView originView = findViewById(R.id.origin_tv);
+        originView.setText(sandwich.getPlaceOfOrigin());
 
-//        TextView ingredients = findViewById(R.id.ingredients_tv);
-//        ingredients.setText(stringifyList(sandwich.getIngredients()));
-//
-//        TextView alsoKnownAs = findViewById(R.id.also_known_tv);
-//        alsoKnownAs.setText(stringifyList(sandwich.getAlsoKnownAs()));
+        TextView descriptionView = findViewById(R.id.description_tv);
+        descriptionView.setText(sandwich.getDescription());
+
+        TextView ingredientsView = findViewById(R.id.ingredients_tv);
+        List<String> ingredientsList = sandwich.getIngredients();
+        if(ingredientsList.size() == 0) {
+            ingredientsView.setVisibility(View.GONE);
+        }
+        else {
+            ingredientsView.setText(stringifyList(ingredientsList));
+        }
+
+
+        TextView alsoKnownAsView = findViewById(R.id.also_known_tv);
+        List<String> alsoknownAsList = sandwich.getAlsoKnownAs();
+        if(alsoknownAsList.size() == 0) {
+            alsoKnownAsView.setVisibility(View.GONE);
+        }
+        else {
+            alsoKnownAsView.setText(stringifyList(alsoknownAsList));
+        }
+
 
     }
 
     private String stringifyList(List<String> list) {
         StringBuilder result = new StringBuilder("");
 
-        if(list.size() > 0 || list != null) {
+        if(list.size() == 1) {
+            result.append(list.get(0));
+        }
+        else if(list.size() > 1 || list != null) {
+
             for (int i = 0; i < list.size(); i++) {
-                result.append(list.get(i) + " ");
+                if(i == list.size() -2) {
+                    result.append(list.get(i) + " and ");
+                }
+                else if(i == list.size() -1) {
+                    result.append(list.get(i));
+                }
+                else {
+                    result.append(list.get(i) + ", ");
+                }
             }
         }
 
-        return list.toString().trim();
+        return result.toString().trim();
     }
 }

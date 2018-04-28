@@ -1,75 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.udacity.sandwichclub.DetailActivity">
 
-    <ImageView
-        android:id="@+id/image_iv"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/sandwich_picture_content_description"
-        android:scaleType="centerCrop" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/sandwich_picture_content_description"
+                android:scaleType="centerCrop"
+                tools:text="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Grilled_ham_and_cheese_014.JPG/800px-Grilled_ham_and_cheese_014.JPG" />
+
+
+            <TextView
+                android:id="@+id/main_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="16dp"
+                android:textColor="@android:color/white"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                tools:text="Ham and cheese Sandwich" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/origin_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_width="@dimen/label_width"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_weight="0"
+                android:text="@string/detail_place_of_origin_label"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/origin_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/detail_also_known_as_label"
                 android:layout_weight="1"
+                tools:text="Brazil" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="@dimen/label_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:text="@string/detail_also_known_as_label"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/also_known_tv"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Misto Quente, Prensadinho" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="@dimen/label_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:text="@string/detail_description_label"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/description_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="A very popular sandwich, and very easy to make. It can has a lot of variations." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="@dimen/label_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:text="@string/detail_ingredients_label"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/detail_place_of_origin_label"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/description_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
                 android:id="@+id/ingredients_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/detail_description_label"
-                android:textStyle="bold" />
-
+                android:layout_weight="1"
+                tools:text="loaf bread, mozzarella or swiss cheese, ham" />
         </LinearLayout>
 
-    </ScrollView>
-</FrameLayout>
+    </LinearLayout>
+
+</ScrollView>
