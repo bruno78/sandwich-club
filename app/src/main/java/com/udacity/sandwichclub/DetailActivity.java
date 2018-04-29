@@ -76,7 +76,9 @@ public class DetailActivity extends AppCompatActivity {
         TextView ingredientsView = findViewById(R.id.ingredients_tv);
         List<String> ingredientsList = sandwich.getIngredients();
         if(ingredientsList.size() == 0) {
+            // TODO set visibility of the label to GONE...
             ingredientsView.setVisibility(View.GONE);
+
         }
         else {
             ingredientsView.setText(stringifyList(ingredientsList));
@@ -104,6 +106,7 @@ public class DetailActivity extends AppCompatActivity {
         else if(list.size() > 1 || list != null) {
 
             for (int i = 0; i < list.size(); i++) {
+                // TODO if in a bigger statement lower casing...
                 if(i == list.size() -2) {
                     result.append(list.get(i) + " and ");
                 }
