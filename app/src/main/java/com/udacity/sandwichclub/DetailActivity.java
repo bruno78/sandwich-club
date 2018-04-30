@@ -89,7 +89,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * This helper method takes a List and creates a string with elements separated by comma, "and", and period.
+     * This helper method takes a List and creates a string with elements separated by comma,
+     * "and", and period.
      * @param list
      * @return String version of listed items.
      */
