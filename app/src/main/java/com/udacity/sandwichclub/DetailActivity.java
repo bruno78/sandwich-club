@@ -64,40 +64,36 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
 
+        // Main name view
         TextView mainNameView = findViewById(R.id.main_name_tv);
         mainNameView.setText(sandwich.getMainName());
 
+        // Origin view
         TextView originView = findViewById(R.id.origin_tv);
         originView.setText(sandwich.getPlaceOfOrigin());
 
+        // Description view
         TextView descriptionView = findViewById(R.id.description_tv);
         descriptionView.setText(sandwich.getDescription());
 
+        // Ingredients view
         TextView ingredientsView = findViewById(R.id.ingredients_tv);
         List<String> ingredientsList = sandwich.getIngredients();
-        if(ingredientsList.size() == 0) {
-            // TODO set visibility of the label to GONE...
-            ingredientsView.setVisibility(View.GONE);
+        ingredientsView.setText(stringifyList(ingredientsList, "ingredients"));
 
-        }
-        else {
-            ingredientsView.setText(stringifyList(ingredientsList));
-        }
-
-
+        // Also known As view
         TextView alsoKnownAsView = findViewById(R.id.also_known_tv);
         List<String> alsoknownAsList = sandwich.getAlsoKnownAs();
-        if(alsoknownAsList.size() == 0) {
-            alsoKnownAsView.setVisibility(View.GONE);
-        }
-        else {
-            alsoKnownAsView.setText(stringifyList(alsoknownAsList));
-        }
-
+        alsoKnownAsView.setText(stringifyList(alsoknownAsList, "alsoKnownAs"));
 
     }
 
-    private String stringifyList(List<String> list) {
+    /**
+     * This helper method takes a List and creates a string with elements separated by comma, "and", and period.
+     * @param list
+     * @return String version of listed items.
+     */
+    private String stringifyList(List<String> list, String listType) {
         StringBuilder result = new StringBuilder("");
 
         if(list.size() == 1) {
@@ -106,15 +102,19 @@ public class DetailActivity extends AppCompatActivity {
         else if(list.size() > 1 || list != null) {
 
             for (int i = 0; i < list.size(); i++) {
-                // TODO if in a bigger statement lower casing...
+
+                String item = list.get(i);
+                // This assures that all ingredients are lower case
+                if(i > 0 && listType == "ingredients") item = item.toLowerCase();
+
                 if(i == list.size() -2) {
-                    result.append(list.get(i) + " and ");
+                    result.append(item + " and ");
                 }
                 else if(i == list.size() -1) {
-                    result.append(list.get(i));
+                    result.append(item + ".");
                 }
                 else {
-                    result.append(list.get(i) + ", ");
+                    result.append(item + ", ");
                 }
             }
         }
